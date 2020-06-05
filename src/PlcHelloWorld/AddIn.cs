@@ -11,6 +11,9 @@ namespace PlcHelloWorld
     {
         public override bool Setup()
         {
+            //--Setup the ribbons
+            this.SetupRibbon();
+
             //--After successful initialization we return true
             return true;
         }
