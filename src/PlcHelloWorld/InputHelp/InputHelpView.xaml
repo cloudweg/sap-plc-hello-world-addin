@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="PlcHelloWorld.InputHelp.InputHelpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlcHelloWorld.InputHelp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Grid
+        x:Name="mainGrid"
+        Margin="2,0,0,0"
+        Background="#f2f9fc">
+
+        <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="3">
+            <Grid Margin="10,20,10,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Label 
+                    Grid.Row="0"
+                    FontWeight="Bold"
+                    Content="Value help - Choose to update field"   
+                    HorizontalAlignment="Left"
+                    />
+                <Label 
+                    Grid.Row="2"
+                    Content="Current Value:"   
+                    HorizontalAlignment="Left"
+                    />
+                <TextBox 
+                    Text="{Binding FieldValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                    Grid.Row="2"
+                    HorizontalAlignment="Left"
+                    Width="278"
+                    Margin="100,0,0,0"
+                    IsEnabled="false"
+                    />
+                <ComboBox
+                    Name="cmbInputValues"
+                    Grid.Row="4" 
+                    Width="270"
+                    HorizontalAlignment="Left"
+                    IsEnabled="{Binding MaterialSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedInputValue}">                    
+                    <ComboBoxItem>P-100</ComboBoxItem>
+                    <ComboBoxItem>P-200</ComboBoxItem>
+                    <ComboBoxItem>P-300</ComboBoxItem>
+                </ComboBox>
+                <Button 
+                    Content="{Binding Path=UpdateFieldButton}"  
+                    IsEnabled="{Binding MaterialSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Click="UpdateFieldButtonClick"
+                    HorizontalAlignment="Left" 
+                    Width="100" 
+                    Grid.Row="4" 
+                    Margin="278,0,0,0" />
+            </Grid>
+
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="107*" />
+                    <ColumnDefinition Width="291*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
