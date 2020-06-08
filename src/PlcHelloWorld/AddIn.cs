@@ -19,6 +19,7 @@ namespace PlcHelloWorld
             }
             catch(System.Exception e)
             {
+                //--Error occured...
                 new Message(e.Message, MessageType.Error).Show();
                 return false;
             }

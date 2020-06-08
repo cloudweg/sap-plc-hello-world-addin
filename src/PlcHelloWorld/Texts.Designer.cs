@@ -70,7 +70,25 @@ namespace PlcHelloWorld {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Material Selected. Function not possible..
+        ///   Looks up a localized string similar to Current Value:.
+        /// </summary>
+        internal static string ButtonUpdateFieldInputLabel {
+            get {
+                return ResourceManager.GetString("ButtonUpdateFieldInputLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value help - Choose to update field.
+        /// </summary>
+        internal static string ButtonUpdateFieldLabel {
+            get {
+                return ResourceManager.GetString("ButtonUpdateFieldLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Material Selected. Please select new material no. first..
         /// </summary>
         internal static string MsgNoMaterialSelected {
             get {

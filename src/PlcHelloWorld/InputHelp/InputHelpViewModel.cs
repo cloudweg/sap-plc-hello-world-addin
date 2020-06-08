@@ -15,6 +15,14 @@ namespace PlcHelloWorld.InputHelp
         {
             get => Texts.ButtonUpdateField;
         }
+        public string UpdateFieldLabelButton
+        {
+            get => Texts.ButtonUpdateFieldLabel;
+        }
+        public string UpdateFieldInputLabelButton
+        {
+            get => Texts.ButtonUpdateFieldInputLabel;
+        }
         #endregion
 
         private string _fieldValue;

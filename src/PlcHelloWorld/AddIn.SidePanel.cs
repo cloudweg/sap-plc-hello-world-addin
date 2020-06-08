@@ -19,11 +19,11 @@ namespace PlcHelloWorld
 
         private void SetupSidePanel()
         {
-
             //--Create view and model
             FrameworkElement view = new InputHelpView();
             viewModel = new InputHelpViewModel();
             view.DataContext = viewModel;
+            InputHelpView inputHelpView = (InputHelpView)view;
 
             //--Create side panel
             var inputSidePanel = new SidePanel(Texts.SidePanelCaption, view);
@@ -31,50 +31,48 @@ namespace PlcHelloWorld
             //--Add side panel
             this.CalculationTab.SidePanels.Add(inputSidePanel);
 
-            //-Register events
-            InputHelpView inputHelpView = (InputHelpView)view;
+            //--Register events if user changes the current line item or changes the selection
+            this.CalculationTab.CostItemSelectionChanged += CheckMaterialSelectedOrChanged;
+            this.CalculationTab.CostItemChanged += CheckMaterialSelectedOrChanged;
+
+            //--Register main logic if user presses the "Update Field" button
             inputHelpView.UpdateFieldButtonClicked += UpdateFieldButtonClicked;
-            this.CalculationTab.CostItemSelectionChanged += CheckMaterialSelected;
-            this.CalculationTab.CostItemSelectionChanged += UpdateShownFieldValue;
-            this.CalculationTab.CostItemChanged += UpdateShownFieldValue;
         }
 
-        private void UpdateShownFieldValue(object sender, ICostItemEventArgs e)
+        private void CheckMaterialSelectedOrChanged(object sender, ICostItemEventArgs e)
         {
-            //--Update the field value every time the users changes the selection
-            viewModel.FieldValue = this.CalculationTab?.SelectedCostItemInActiveVersion?.Material?.Id;
-        }
-
-        private void CheckMaterialSelected(object sender, ICostItemEventArgs e)
-        {
-           
-           if( this.CalculationTab?.SelectedCostItemInActiveVersion?.Material != null)
+           if( e.CostItem.ItemCategory == ItemCategory.Material)
             {
+                //--Set material selected property to true
                 viewModel.MaterialSelected = true;
+                //--Update the field value every time the users changes the selection
+                viewModel.FieldValue = this.CalculationTab?.SelectedCostItemInActiveVersion?.Material?.Id;
             }
             else
             {
+                //--Set material selected property to false
                 viewModel.MaterialSelected = false;
+                //--No material so, clear the field
+                viewModel.FieldValue = "";
             }
         }
 
         private void UpdateFieldButtonClicked(object sender, EventArgs e)
         {
-            //--Check if current item is material
-            if ( this.CalculationTab?.SelectedCostItemInActiveVersion?.Material?.Id != null)
+            //--Check if new material no. is selected
+            if (  viewModel?.SelectedInputValue?.Content != null &&
+                  this.CalculationTab?.SelectedCostItemInActiveVersion?.Material?.Id != (string)viewModel?.SelectedInputValue?.Content)
             {
-                if (this.CalculationTab?.SelectedCostItemInActiveVersion?.Material != null &&
-                    viewModel.SelectedInputValue?.Content != null &&
-                    this.CalculationTab.SelectedCostItemInActiveVersion.Material.Id != (string)viewModel.SelectedInputValue.Content)
-                {
-                    var newMAterial = Material.CreateBuilder((string)viewModel.SelectedInputValue.Content).Build();
-                    this.CalculationTab.SelectedCostItemInActiveVersion.Material = newMAterial;
-                    this.CalculationTab.SelectedCostItemInActiveVersion.UpdateOnBackendAsync();
-                }
+                //--Build new material object
+                var newMaterial = Material.CreateBuilder((string)viewModel.SelectedInputValue.Content).Build();
+                //--Set new material object locally
+                this.CalculationTab.SelectedCostItemInActiveVersion.Material = newMaterial;
+                //--Update material on backend
+                this.CalculationTab.SelectedCostItemInActiveVersion.UpdateOnBackendAsync();
             }
             else
             {             
-                //--No material selected, show warning message
+                //--No new material selected
                 new Message(
                     Texts.MsgNoMaterialSelected,
                     MessageType.Warning

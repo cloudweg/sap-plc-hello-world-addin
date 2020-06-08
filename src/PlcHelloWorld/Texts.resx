@@ -120,8 +120,14 @@
   <data name="ButtonUpdateField" xml:space="preserve">
     <value>Update Field</value>
   </data>
+  <data name="ButtonUpdateFieldInputLabel" xml:space="preserve">
+    <value>Current Value:</value>
+  </data>
+  <data name="ButtonUpdateFieldLabel" xml:space="preserve">
+    <value>Value help - Choose to update field</value>
+  </data>
   <data name="MsgNoMaterialSelected" xml:space="preserve">
-    <value>No Material Selected. Function not possible.</value>
+    <value>No Material Selected. Please select new material no. first.</value>
   </data>
   <data name="SidePanelCaption" xml:space="preserve">
     <value>Material Price List</value>

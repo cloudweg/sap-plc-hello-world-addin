@@ -22,39 +22,52 @@
                 </Grid.RowDefinitions>
                 <Label 
                     Grid.Row="0"
-                    FontWeight="Bold"
-                    Content="Value help - Choose to update field"   
+                    Content="{Binding Path=UpdateFieldLabelButton}"     
                     HorizontalAlignment="Left"
+                    FontFamily="Calibri"
+                    FontSize="14"
+                    FontWeight="Bold"
                     />
                 <Label 
-                    Grid.Row="2"
-                    Content="Current Value:"   
+                    Grid.Row="2" 
+                    Content="{Binding Path=UpdateFieldInputLabelButton}"
                     HorizontalAlignment="Left"
+                    FontFamily="Calibri"
+                    FontSize="14"
                     />
                 <TextBox 
                     Text="{Binding FieldValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                     Grid.Row="2"
+                    TextWrapping="Wrap"
                     HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Width="278"
                     Margin="100,0,0,0"
                     IsEnabled="false"
+                    FontFamily="Calibri"
+                    FontSize="14"
                     />
                 <ComboBox
                     Name="cmbInputValues"
                     Grid.Row="4" 
                     Width="270"
                     HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontFamily="Calibri"
+                    FontSize="14"
                     IsEnabled="{Binding MaterialSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     SelectedItem="{Binding SelectedInputValue}">                    
-                    <ComboBoxItem>P-100</ComboBoxItem>
-                    <ComboBoxItem>P-200</ComboBoxItem>
-                    <ComboBoxItem>P-300</ComboBoxItem>
+                    <ComboBoxItem>#100-100</ComboBoxItem>
+                    <ComboBoxItem>#100-200</ComboBoxItem>
+                    <ComboBoxItem>#100-300</ComboBoxItem>
                 </ComboBox>
                 <Button 
                     Content="{Binding Path=UpdateFieldButton}"  
                     IsEnabled="{Binding MaterialSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Click="UpdateFieldButtonClick"
                     HorizontalAlignment="Left" 
+                    FontFamily="Calibri"
+                    FontSize="14"
                     Width="100" 
                     Grid.Row="4" 
                     Margin="278,0,0,0" />
