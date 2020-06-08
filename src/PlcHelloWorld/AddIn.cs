@@ -1,4 +1,5 @@
 ﻿using Sap.Plc.AddIn.AddInView;
+using Sap.Plc.AddIn.AddInView.UserInterface.Messaging;
 using System.AddIn;
 using System.AddIn.Pipeline;
 
@@ -11,6 +12,18 @@ namespace PlcHelloWorld
     {
         public override bool Setup()
         {
+            try
+            {
+                //--Setup customizing
+                this.SetupConfiguration();
+            }
+            catch (System.Exception e)
+            {
+                //--Error occured...
+                new Message(e.Message, MessageType.Error).Show();
+                return false;
+            }
+
             //--After successful initialization we return true
             return true;
         }
