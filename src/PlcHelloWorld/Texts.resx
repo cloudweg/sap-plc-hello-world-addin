@@ -130,6 +130,6 @@
     <value>No Material Selected. Please select new material no. first.</value>
   </data>
   <data name="SidePanelCaption" xml:space="preserve">
-    <value>Material Price List</value>
+    <value>Material Input Help</value>
   </data>
 </root>

@@ -19,9 +19,7 @@ namespace PlcHelloWorld
             }
             catch(System.Exception e)
             {
-                //--Error occured...
-                new Message(e.Message, MessageType.Error).Show();
-                return false;
+                //--Error occured... Add log function here
             }
 
             //--After successful initialization we return true

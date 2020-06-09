@@ -97,7 +97,7 @@ namespace PlcHelloWorld {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Material Price List.
+        ///   Looks up a localized string similar to Material Input Help.
         /// </summary>
         internal static string SidePanelCaption {
             get {
