@@ -20,6 +20,7 @@ namespace PlcHelloWorld
             catch(System.Exception e)
             {
                 //--Error occured... Add log function here
+                return false;
             }
 
             //--After successful initialization we return true
