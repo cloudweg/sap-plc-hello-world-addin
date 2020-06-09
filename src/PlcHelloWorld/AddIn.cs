@@ -20,7 +20,7 @@ namespace PlcHelloWorld
             catch (System.Exception e)
             {
                 //--Error occured...
-                new Message(e.Message, MessageType.Error).Show();
+                //--Add logging functionality here.
                 return false;
             }
 
